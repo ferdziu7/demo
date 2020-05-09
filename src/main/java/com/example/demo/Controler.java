@@ -5,9 +5,7 @@ import com.example.demo.model.Word;
 import com.example.demo.repositoris.UserRepository;
 import com.example.demo.repositoris.WordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -60,6 +58,20 @@ public List<Word> creatData(){
 
     return user;
 }
+
+@PostMapping("/posttest")
+    public Word addWord(@RequestBody Word w)
+    {
+        wordRepository.save(w);
+        return w;
+    }
+
+    @DeleteMapping("/deleteword")
+    public String deleteWord( long id)
+    {
+        wordRepository.deleteById(id);
+        return "ok";
+    }
 
 }
 
